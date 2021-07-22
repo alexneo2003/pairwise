@@ -1,6 +1,7 @@
-import { CLIEngine } from 'eslint';
 import React from 'react';
 import { useTable } from 'react-table';
+import BTable from 'react-bootstrap/Table';
+import { PlusLg } from 'react-bootstrap-icons';
 
 const Table = () => {
   const data = React.useMemo(
@@ -34,28 +35,44 @@ const Table = () => {
     ],
     []
   );
+
+  const onPlusClick = (type) => {
+    switch (type) {
+      case 'column':
+        console.log('column');
+        break;
+
+      case 'row':
+        console.log('row');
+
+        break;
+
+      case 'columnRow':
+        console.log('columnRow');
+
+        break;
+
+      default:
+        break;
+    }
+  };
+
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
 
   return (
-    <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
+    <BTable {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.Header}>
-            {headerGroup.headers.map((column) => (
-              <th
-                key={column.accessor}
-                {...column.getHeaderProps()}
-                style={{
-                  borderBottom: 'solid 3px red',
-                  background: 'aliceblue',
-                  color: 'black',
-                  fontWeight: 'bold',
-                }}
-              >
+          <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.headers}>
+            {headerGroup.headers.map((column, index) => (
+              <th key={index} {...column.getHeaderProps()}>
                 {column.render('Header')}
               </th>
             ))}
+            <th>
+              <PlusLg onClick={() => onPlusClick('column')} />
+            </th>
           </tr>
         ))}
       </thead>
@@ -66,24 +83,31 @@ const Table = () => {
             <tr {...row.getRowProps()} key={row.index}>
               {row.cells.map((cell) => {
                 return (
-                  <td
-                    key={cell.value}
-                    {...cell.getCellProps()}
-                    style={{
-                      padding: '10px',
-                      border: 'solid 1px gray',
-                      background: 'papayawhip',
-                    }}
-                  >
+                  <td key={cell.value} {...cell.getCellProps()}>
                     {cell.render('Cell')}
                   </td>
                 );
               })}
+              <td>
+                <PlusLg onClick={() => onPlusClick('column')} />
+              </td>
             </tr>
           );
         })}
+        <tr>
+          {rows[0].cells.map((cell) => {
+            return (
+              <td>
+                <PlusLg onClick={() => onPlusClick('row')} />
+              </td>
+            );
+          })}
+          <td>
+            <PlusLg onClick={() => onPlusClick('columnRow')} />
+          </td>
+        </tr>
       </tbody>
-    </table>
+    </BTable>
   );
 };
 
