@@ -1,7 +1,10 @@
-const express = require('express');
-const pict = require('pict-pairwise-testing').pict;
+import express from 'express';
+import cors from 'cors';
+import pairwiseRouter from './routes/pairwise';
 
 const app = express();
+
+app.use(cors());
 
 // const modelWithConstraints = {
 //   parameters: [
@@ -37,31 +40,8 @@ const app = express();
 
 // let result = pict(modelWithSubmodel);
 
-function pairwise() {
-  const model = {
-    parameters: [
-      { property: 'Name', values: ['Alex', 'Jhon'] },
-      { property: 'Surename', values: ['Neo', 'Dou'] },
-      { property: 'Age', values: [36, 20] },
-    ],
-    constraints: [
-      'IF [Name] = "Alex"   THEN [Age] = 36;',
-      'IF [Name] = "Alex"   THEN [Surename] = "Neo";',
-    ],
-  };
-
-  let result = pict(model, {
-    options: {
-      // show_model_statistics: true,
-      // randomize_generation: 10,
-      // order_of_combinations: 2,
-    },
-  });
-  console.log(JSON.stringify(result, null, 2));
-}
+app.use('/pairwise', pairwiseRouter);
 
 app.listen(3030, () => {
   console.log('server started at http://localhost:3030');
-
-  pairwise();
 });

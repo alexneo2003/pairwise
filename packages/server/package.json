@@ -4,7 +4,21 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "set NODE_ENV=development && nodemon --exec babel-node  src/index.js",
+    "start": "set NODE_ENV=production && nodemon --exec babel-node  src/index.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "cors": "^2.8.5",
+    "exceljs": "^4.2.1",
+    "express": "^4.17.1",
+    "pict-pairwise-testing": "^1.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "prettier": "^2.3.2"
+  }
 }

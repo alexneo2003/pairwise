@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier",
+    "next",
+    "next/core-web-vitals"
+  ],
+  "plugins": ["prettier", "react-hooks", "simple-import-sort"],
+  "rules": {
+    "react/jsx-filename-extension": 0,
+    "react/jsx-props-no-spreading": 0,
+    "class-methods-use-this": 0
+  }
+}
