@@ -40,6 +40,9 @@ app.use(cors());
 
 // let result = pict(modelWithSubmodel);
 
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
 app.use('/pairwise', pairwiseRouter);
 
 app.listen(3030, () => {

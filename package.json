@@ -10,7 +10,8 @@
   "scripts": {
     "kill-ports": "kill-port --port 3000,3030",
     "dev": "npm run kill-ports && lerna run dev --parallel --stream",
-    "build": " lerna run build",
+    "build": "lerna run build",
+    "start": "npm run kill-ports && lerna run start --parallel --stream",
     "clean:update": "lerna clean && lerna bootstrap"
   },
   "dependencies": {
