@@ -12,5 +12,5 @@
       "dest": "src/index.js"
     }
   ],
-  "alias": "kanban-server.vercel.app"
+  "alias": "pairwise-server.vercel.app"
 }
