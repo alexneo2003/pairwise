@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "set NODE_ENV=development && nodemon --exec babel-node  src/index.js",
-    "start": "set NODE_ENV=production && nodemon --exec babel-node  src/index.js"
+    "start": "babel-node  src/index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
