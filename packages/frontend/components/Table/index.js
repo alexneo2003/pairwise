@@ -9,6 +9,8 @@ import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import { saveAs } from 'file-saver';
 
+const BASE_URL = process.env.NODE_ENV === 'production' : 'https://kanban-server.vercel.app' ? 'http://localhost:3030'
+
 const PlusLgPointer = styled(PlusLg)`
   cursor: pointer;
   ${
@@ -223,7 +225,7 @@ const TableView = () => {
 
   const onSendPairwiseRequest = () => {
     axios
-      .post('http://localhost:3030/pairwise', null, {
+      .post(`${BASE_URL}/pairwise`, null, {
         responseType: 'blob',
       })
       .then((response) => {
